@@ -1,0 +1,45 @@
+name: update
+
+# Copies the formula of the latest epx release into Formula/epx.rb: the release asset epx.rb,
+# which the release of epx writes (https://github.com/commerce-cloud-integrations/emporix-cli).
+# Runs every hour and on demand (gh workflow run update.yml).
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Copy the formula of the latest release
+        run: |
+          set -euo pipefail
+          new="$RUNNER_TEMP/epx.rb"
+          curl -fsSL --proto '=https' --proto-redir '=https' --retry 3 -o "$new" \
+            https://github.com/commerce-cloud-integrations/emporix-cli/releases/latest/download/epx.rb
+          grep -qx "class Epx < Formula" "$new" && ruby -c "$new" >/dev/null
+          if cmp -s "$new" Formula/epx.rb; then
+            echo "Formula/epx.rb is up to date"
+            exit 0
+          fi
+          version=$(sed -n 's|.*/releases/download/v\([0-9][0-9.]*\)/.*|\1|p' "$new" | head -n 1)
+          [ -n "$version" ] || { echo "epx.rb names no release" >&2; exit 1; }
+          mkdir -p "$(dirname Formula/epx.rb)"
+          cp "$new" Formula/epx.rb
+          git add Formula/epx.rb
+          git -c user.name="github-actions[bot]" \
+            -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "epx $version"
+          git push
