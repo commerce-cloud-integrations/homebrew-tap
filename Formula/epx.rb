@@ -1,4 +1,4 @@
-# Written by the release of epx 0.4.0 (https://github.com/commerce-cloud-integrations/emporix-cli); do not edit.
+# Written by the release of epx 0.5.0 (https://github.com/commerce-cloud-integrations/emporix-cli); do not edit.
 class Epx < Formula
   desc "Command-line client for the Emporix Commerce APIs"
   homepage "https://commerce-cloud-integrations.github.io/emporix-cli/"
@@ -6,23 +6,23 @@ class Epx < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.4.0/epx_v0.4.0_darwin_arm64.tar.gz"
-      sha256 "e3203c3dc1f7ba1c39eaa883bd8a4ef2c98d9f3b8a784684aabb36bcaaf0799b"
+      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.5.0/epx_v0.5.0_darwin_arm64.tar.gz"
+      sha256 "7df8690a156b5d78f98d027667a99f74ff20d4a069a51a1eb55c113d6132c301"
     end
     on_intel do
-      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.4.0/epx_v0.4.0_darwin_amd64.tar.gz"
-      sha256 "1026a6fff0d0956ad99f2137b798e4b5c0319abbe5d1112064259b133218b737"
+      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.5.0/epx_v0.5.0_darwin_amd64.tar.gz"
+      sha256 "07b1e21ebe202815f14c53b4a140703ce385d2f91fdb5935097b9d809a11aa3d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.4.0/epx_v0.4.0_linux_arm64.tar.gz"
-      sha256 "fa1b015136f48996b6da24dd5481ccd5a3d035578f4a10ed95a3f7b5a7d0d2c6"
+      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.5.0/epx_v0.5.0_linux_arm64.tar.gz"
+      sha256 "87d2154eb121c4d465d3f62361487efaacdd15624709c270f639d79613134390"
     end
     on_intel do
-      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.4.0/epx_v0.4.0_linux_amd64.tar.gz"
-      sha256 "1d8a3b9acb306a8635c7c2e8a93b9e8725d19eec01233e47ee21e782a42d5e82"
+      url "https://github.com/commerce-cloud-integrations/emporix-cli/releases/download/v0.5.0/epx_v0.5.0_linux_amd64.tar.gz"
+      sha256 "9faff5819f3866d4918be05b63210471ea97352c8d68190f67a5e9c2fe294aa6"
     end
   end
 
